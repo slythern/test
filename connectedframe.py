@@ -25,7 +25,9 @@ def download_images(url):
 	extract = "unzip -o " + archive + " -d " + base_path
 
 	system(remove)
+	print("download")
 	system(download)
+	print("extract")
 	system(extract)
 
 def resize_images():
@@ -95,6 +97,10 @@ def update_image(image_path):
 	like_button.configure(image=img)
 	like_button.image = img
 
+	img = ImageTk.PhotoImage(Image.open("/usr/src/app/icons/reload_off.png")) # new
+	reload_button.configure(image=img)
+	reload_button.image = img
+
 def initialize():
 	global image_list, carrousel_status, initial_init
 	current_carrousel_status = carrousel_status
@@ -103,12 +109,13 @@ def initialize():
 	download_images(dropbox_link)
 	resize_images()
 	image_list = list_images()
+	print (len(image_list))
 
 	carrousel_status = current_carrousel_status
 
 	if(initial_init):
 		initial_init = False
-		root.after(1000, initialize)
+#		root.after(1000, initialize)
 	else:
 		root.after(download_interval, initialize)
 
@@ -120,6 +127,13 @@ def send_event():
 	command = "curl -X POST -H \"Content-Type: application/json\" -d '{\"value1\":\"" + frame_owner + "\",\"value2\":\"" + image_list[image_index] + "\"}' https://maker.ifttt.com/trigger/connectedframe_like/with/key/" + ifttt_key
 
 	system(command)
+
+def force_reload():
+	print("reload triggered")
+	img = ImageTk.PhotoImage(Image.open("/usr/src/app/icons/reload_on.png")) # new
+	reload_button.configure(image=img)
+	reload_button.image = img
+	root.after(100, initialize)
 
 root = Tk()
 root.title('Connected Frame')
@@ -160,6 +174,10 @@ next_button.pack(fill=BOTH, expand=1)
 center_label.pack(side="bottom", fill=BOTH, expand=1)
 play_button.pack(fill=BOTH, expand=1)
 like_button.pack(fill=BOTH, expand=1)
+
+reload_icon = ImageTk.PhotoImage(Image.open("/usr/src/app/icons/reload_off.png"))
+reload_button = Button(right_column, image=reload_icon, borderwidth=0, background="black", foreground="white", activebackground="black", activeforeground="white", highlightthickness=0, command=force_reload)
+reload_button.pack(fill=BOTH, expand=1)
 
 carrousel()
 
