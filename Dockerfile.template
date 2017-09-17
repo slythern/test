@@ -1,6 +1,12 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-python:2.7
 #FROM resin/%%RESIN_MACHINE_NAME%%-node:6
 
+# Defines our working directory in container
+WORKDIR /usr/src/app
+
+# Enable systemd init system in container
+ENV INITSYSTEM on
+
 # We have split up the resin-wifi-connect and Display-O-Tron HAT configuration to make clear
 # the different parts needed. In your dockerfile you should combine these steps to reduce
 # the number of layers.
@@ -64,7 +70,7 @@ RUN echo "#!/bin/bash" > /etc/X11/xinit/xserverrc \
   && echo 'exec /usr/bin/X -s 0 dpms -nocursor -nolisten tcp "$@"' >> /etc/X11/xinit/xserverrc
 
 # Defines our working directory in container
-WORKDIR /usr/src/app
+#WORKDIR /usr/src/app
 
 # Copies the package.json first for better cache on later pushes
 COPY package.json package.json
@@ -80,7 +86,7 @@ COPY . ./
 RUN crontab jobs.txt
 
 # Enable systemd init system in container
-ENV INITSYSTEM on
+#ENV INITSYSTEM on
 
 # Start app
 CMD ["bash", "/usr/src/app/start.sh"]
