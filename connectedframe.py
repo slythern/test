@@ -22,7 +22,7 @@ def download_images(url):
 
 	remove = "sudo rm -rf " + base_path + "*"
 	download = "wget -q  "+ url + " -O " + archive
-	extract = "unzip -o " + archive + " -d " + base_path
+	extract = "unzip -o -j " + archive + " *.jpg -d " + base_path # added *.jpg to get only images, added -j to not make directories
 
 	system(remove)
 	print("download")
@@ -115,7 +115,7 @@ def initialize():
 
 	if(initial_init):
 		initial_init = False
-#		root.after(1000, initialize)
+#		root.after(1000, initialize) # removed to stop loading images twice
 	else:
 		root.after(download_interval, initialize)
 
