@@ -33,6 +33,7 @@ def download_images(url):
 def resize_images():
 	images = list_images()
 
+	print("resize")
 	for file in images:
 		img = Image.open(file)
 		img = img.resize((640, 480), Image.ANTIALIAS)
