@@ -12,10 +12,10 @@ frame_owner = getenv("FRAME_OWNER")
 ifttt_key = getenv("IFTTT_KEY")
 time_zone = getenv("TIME_ZONE")
 
-system("sudo crontab -r")
-crontab_zone = "sudo crontab " + time_zone
-print(crontab_zone)
-# system(crontab_zone)
+# system("sudo crontab -r")
+command = "sudo crontab " + time_zone
+print(command)
+# system(command)
 
 base_path = "/usr/src/app/images/"
 carrousel_status = True
