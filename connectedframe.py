@@ -10,6 +10,11 @@ download_interval = int(getenv("DOWNLOAD_INTERVAL_HOURS")) * 60 * 60 * 1000
 carousel_interval = int(getenv("CAROUSEL_INTERVAL_SECONDS")) * 1000
 frame_owner = getenv("FRAME_OWNER")
 ifttt_key = getenv("IFTTT_KEY")
+time_zone = getenv("TIME_ZONE")
+
+system("crontab -r")
+crontab_zone = "crontab " + time_zone
+system(crontab_zone)
 
 base_path = "/usr/src/app/images/"
 carrousel_status = True
@@ -134,6 +139,11 @@ def force_reload():
 	img = ImageTk.PhotoImage(Image.open("/usr/src/app/icons/reload_on.png")) # new
 	reload_button.configure(image=img)
 	reload_button.image = img
+
+	img = ImageTk.PhotoImage(Image.open("/usr/src/app/icons/Reload.jpg"))
+	center_label.configure(image=img)
+	center_label.image = img
+
 	root.after(100, initialize)
 
 root = Tk()
