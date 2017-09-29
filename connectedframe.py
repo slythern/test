@@ -15,7 +15,7 @@ time_zone = getenv("TIME_ZONE")
 # system("sudo crontab -r")
 command = "sudo crontab " + time_zone
 print(command)
-# system(command)
+system(command)
 
 base_path = "/usr/src/app/images/"
 carrousel_status = True
