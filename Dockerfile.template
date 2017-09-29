@@ -84,7 +84,7 @@ COPY . ./
 
 # Install cronjobs to turn display on and off 
 # 2017-09-29 PM 1210 moved to application
-# RUN crontab jobs.txt
+RUN crontab jobs.txt
 
 # Enable systemd init system in container
 #ENV INITSYSTEM on
