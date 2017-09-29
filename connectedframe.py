@@ -12,8 +12,8 @@ frame_owner = getenv("FRAME_OWNER")
 ifttt_key = getenv("IFTTT_KEY")
 time_zone = getenv("TIME_ZONE")
 
-system("crontab -r")
-crontab_zone = "crontab " + time_zone
+system("sudo crontab -r")
+crontab_zone = "sudo crontab " + time_zone
 system(crontab_zone)
 
 base_path = "/usr/src/app/images/"
