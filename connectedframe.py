@@ -140,9 +140,9 @@ def force_reload():
 	reload_button.configure(image=img)
 	reload_button.image = img
 
-#	img = ImageTk.PhotoImage(Image.open("/usr/src/app/icons/Reload.jpg"))
-#	center_label.configure(image=img)
-#	center_label.image = img
+	img = ImageTk.PhotoImage(Image.open("/usr/src/app/icons/Reload.jpg"))
+	center_label.configure(image=img)
+	center_label.image = img
 
 	root.after(100, initialize)
 
