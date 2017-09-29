@@ -14,6 +14,7 @@ time_zone = getenv("TIME_ZONE")
 
 system("sudo crontab -r")
 crontab_zone = "sudo crontab " + time_zone
+print(crontab_zone)
 # system(crontab_zone)
 
 base_path = "/usr/src/app/images/"
