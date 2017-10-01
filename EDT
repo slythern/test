@@ -1,6 +1,6 @@
-# Eastern Daylight Time
+# Eastern Daylight Time -4
 # Turn off display every evening 
-0 21 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 2 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
 
 # Turn on display every morning 
-0 7 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+0 12 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power

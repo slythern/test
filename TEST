@@ -1,0 +1,45 @@
+# Turn off display every evening 
+0 3 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 4 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 5 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 6 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 7 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 8 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 9 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 10 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 11 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 12 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 13 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 14 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 15 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 16 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 17 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 18 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 19 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 20 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 21 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 22 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 23 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+
+# Turn on display every morning 
+30 3 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 4 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 5 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 6 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 7 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 8 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 9 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 10 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 11 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 12 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 13 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 14 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 15 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 16 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 17 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 18 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 19 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 20 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 21 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 22 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 23 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
