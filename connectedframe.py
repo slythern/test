@@ -10,10 +10,9 @@ download_interval = int(getenv("DOWNLOAD_INTERVAL_HOURS")) * 60 * 60 * 1000
 carousel_interval = int(getenv("CAROUSEL_INTERVAL_SECONDS")) * 1000
 frame_owner = getenv("FRAME_OWNER")
 ifttt_key = getenv("IFTTT_KEY")
-time_zone = getenv("TIME_ZONE")
 
 # system("sudo crontab -r")
-command = "sudo crontab " + time_zone
+command = "sudo crontab " + getenv("TIME_ZONE")
 print(command)
 system(command)
 
