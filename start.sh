@@ -17,5 +17,8 @@ umount /dev/shm && mount -t tmpfs shm /dev/shm
 # the syntax below starts an X istance with ONLY our electronJS fired up,
 # it saves you a LOT of resources avoiding full-desktops envs
 
+touch /etc/crontab /etc/cron.*/*
+cron -f
+
 rm /tmp/.X0-lock &>/dev/null || true
 startx /usr/src/app/connectedframe.py
