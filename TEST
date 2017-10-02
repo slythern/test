@@ -1,5 +1,9 @@
 * * * * *   echo "Hello $(date)" >>/var/log/cron.log 2>&1
+#
 # Turn off display every evening 
+0 0 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 1 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
+0 2 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
 0 3 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
 0 4 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
 0 5 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
@@ -21,8 +25,11 @@
 0 21 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
 0 22 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
 0 23 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
-
+#
 # Turn on display every morning 
+30 0 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 1 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+30 2 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
 30 3 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
 30 4 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
 30 5 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
