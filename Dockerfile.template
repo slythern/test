@@ -89,7 +89,7 @@ RUN crontab jobs.txt
 
 
 #RUN sed -i '/session required pam_loginuid.so/c\#session required pam_loginuid.so' /etc/pam.d/cron
-RUN sed -e '/pam_loginuid.so/ s/^#*/#/' -i /etc/pam.d/cron
+RUN sed -e '/pam_loginuid.so/ s/^#*/#/' -i /etc/pam.d/cron.d
 
 # Enable systemd init system in container
 #ENV INITSYSTEM on # defined above
