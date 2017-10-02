@@ -84,7 +84,8 @@ COPY . ./
 
 # Install cronjobs to turn display on and off 
 # 2017-09-29 PM 1210 moved to application
-CMD ["cron", "-f"]
+#CMD ["cron", "-f"]
+CMD service cron start && tail -f /dev/null
 RUN crontab jobs.txt
 
 
