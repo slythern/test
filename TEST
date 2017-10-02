@@ -1,3 +1,4 @@
+* * * * *   echo "Hello $(date)" >>/var/log/cron.log 2>&1
 # Turn off display every evening 
 0 3 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
 0 4 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
@@ -43,3 +44,4 @@
 30 21 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
 30 22 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
 30 23 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
+#
