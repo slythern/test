@@ -70,7 +70,7 @@ RUN echo "#!/bin/bash" > /etc/X11/xinit/xserverrc \
   && echo 'exec /usr/bin/X -s 0 dpms -nocursor -nolisten tcp "$@"' >> /etc/X11/xinit/xserverrc
 
 # Defines our working directory in container
-#WORKDIR /usr/src/app
+#WORKDIR /usr/src/app # defined above
 
 # Copies the package.json first for better cache on later pushes
 COPY package.json package.json
@@ -84,15 +84,15 @@ COPY . ./
 
 # Install cronjobs to turn display on and off 
 # 2017-09-29 PM 1210 moved to application
-# RUN crontab jobs.txt
-
 CMD ["cron", "-f"]
+RUN crontab jobs.txt
+
 
 #RUN sed -i '/session required pam_loginuid.so/c\#session required pam_loginuid.so' /etc/pam.d/cron
 RUN sed -e '/pam_loginuid.so/ s/^#*/#/' -i /etc/pam.d/cron
 
 # Enable systemd init system in container
-#ENV INITSYSTEM on
+#ENV INITSYSTEM on # defined above
 
 # Start app
 CMD ["bash", "/usr/src/app/start.sh"]
