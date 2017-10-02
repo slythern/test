@@ -86,7 +86,10 @@ COPY . ./
 # 2017-09-29 PM 1210 moved to application
 # RUN crontab jobs.txt
 
-RUN sed -i '/session required pam_loginuid.so/c\#session required pam_loginuid.so' /etc/pam.d/crond
+CMD ["cron", "-f"]
+
+#RUN sed -i '/session required pam_loginuid.so/c\#session required pam_loginuid.so' /etc/pam.d/cron
+RUN sed -e '/pam_loginuid.so/ s/^#*/#/' -i /etc/pam.d/cron
 
 # Enable systemd init system in container
 #ENV INITSYSTEM on
