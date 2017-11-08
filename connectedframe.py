@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+from time import localtime, strptime
+from datetime import datetime
+
 from Tkinter import *
 from os import putenv, getenv, system
 from PIL import Image, ImageTk 
@@ -11,10 +14,10 @@ carousel_interval = int(getenv("CAROUSEL_INTERVAL_SECONDS")) * 1000
 frame_owner = getenv("FRAME_OWNER")
 ifttt_key = getenv("IFTTT_KEY")
 
-# system("sudo crontab -r")
-command = "sudo crontab " + getenv("TIME_ZONE")
-print(command)
-system(command)
+dropbox_link2 = getenv("DROPBOX_LINK2")
+tz = getenv("TZ")
+turn_backlight_on = strptime(getenv("turn_backlight_on"), "%H:%M")
+turn_backlight_off = strptime(getenv("turn_backlight_off"), "%H:%M")
 
 base_path = "/usr/src/app/images/"
 carrousel_status = True
@@ -22,7 +25,7 @@ image_index = 0
 image_list = []
 initial_init = True
 
-def download_images(url):
+def download_images(url,url2):
 	archive = base_path + "temp.zip"
 
 	remove = "sudo rm -rf " + base_path + "*"
@@ -34,6 +37,18 @@ def download_images(url):
 	system(download)
 	print("extract")
 	system(extract)
+	system(extract)
+
+	remove = "sudo rm -rf " + archive
+	download = "wget -q  "+ url2 + " -O " + archive
+	extract = "unzip -o -j " + archive + " *.jpg -d " + base_path # added *.jpg to get only images, added -j to not make directories
+
+	system(remove)
+	print("download2")
+	system(download)
+	print("extract2")
+	system(extract)
+	print("download_images is done")
 
 def resize_images():
 	images = list_images()
@@ -66,6 +81,10 @@ def previous_image():
 	
 def next_image():
 	global image_index
+
+	if image_index < 1:
+		set_backlight()
+
 	image_index = image_index + 1
 
 	if image_index > len(image_list) - 1:
@@ -145,6 +164,30 @@ def force_reload():
 	center_label.image = img
 
 	root.after(100, initialize)
+	
+
+def set_backlight():
+        print("set_backlight()")
+
+        local_time=localtime()
+        d = datetime(local_time.tm_year,local_time.tm_mon,local_time.tm_mday,local_time.tm_hour,local_time.tm_min,local_time.tm_sec)
+        time_on = datetime(local_time.tm_year,local_time.tm_mon,local_time.tm_mday,turn_backlight_on.tm_hour,turn_backlight_on.tm_min,local_time.tm_sec)
+        time_off = datetime(local_time.tm_year,local_time.tm_mon,local_time.tm_mday,turn_backlight_off.tm_hour,turn_backlight_off.tm_min,local_time.tm_sec)
+	
+        print(d)
+        print(time_on)
+        print(time_off)
+
+        command = "echo 0 > /sys/class/backlight/rpi_backlight/bl_power"
+        if d > time_off :
+                command = "echo 1 > /sys/class/backlight/rpi_backlight/bl_power"
+
+        if d < time_on :
+                command = "echo 1 > /sys/class/backlight/rpi_backlight/bl_power"
+
+        print(command)
+        system(command)
+
 
 root = Tk()
 root.title('Connected Frame')
