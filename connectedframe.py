@@ -131,7 +131,7 @@ def initialize():
 	current_carrousel_status = carrousel_status
 	carrousel_status = False
 
-	download_images(dropbox_link)
+	download_images(dropbox_link,dropbox_link2)
 	resize_images()
 	image_list = list_images()
 	print (len(image_list))
