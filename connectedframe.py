@@ -41,7 +41,7 @@ def download_images(url,url2):
 
 	remove = "sudo rm -rf " + archive
 	download = "wget -q  "+ url2 + " -O " + archive
-	extract = "unzip -o -j " + archive + " *.jpg -d " + base_path # added *.jpg to get only images, added -j to not make directories
+	extract = "unzip -o -j -n " + archive + " *.jpg -d " + base_path # added *.jpg to get only images, added -j to not make directories
 
 	system(remove)
 	print("download2")
