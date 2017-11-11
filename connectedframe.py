@@ -27,7 +27,7 @@ image_index = 0
 image_list = []
 initial_init = True
 
-def download_images(url,,scope):
+def download_images(url,scope):
 	archive = base_path + "temp.zip"
 
 	remove = "sudo rm -rf " + base_path + scope
