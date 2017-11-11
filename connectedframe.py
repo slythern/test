@@ -15,7 +15,9 @@ frame_owner = getenv("FRAME_OWNER")
 ifttt_key = getenv("IFTTT_KEY")
 
 dropbox_link2 = getenv("DROPBOX_LINK2")
-tz = getenv("TZ")
+dropbox_link3 = getenv("DROPBOX_LINK3")
+dropbox_link4 = getenv("DROPBOX_LINK4")
+#tz = getenv("TZ")
 turn_backlight_on = strptime(getenv("turn_backlight_on"), "%H:%M")
 turn_backlight_off = strptime(getenv("turn_backlight_off"), "%H:%M")
 
@@ -25,30 +27,29 @@ image_index = 0
 image_list = []
 initial_init = True
 
-def download_images(url,url2):
+def download_images(url,,scope):
 	archive = base_path + "temp.zip"
 
-	remove = "sudo rm -rf " + base_path + "*"
+	remove = "sudo rm -rf " + base_path + scope
 	download = "wget -q  "+ url + " -O " + archive
-	extract = "unzip -o -j " + archive + " *.jpg -d " + base_path # added *.jpg to get only images, added -j to not make directories
+	extract = "unzip -o -j -n " + archive + " *.jpg -d " + base_path # added *.jpg to get only images, added -j to not make directories
 
 	system(remove)
 	print("download")
 	system(download)
 	print("extract")
 	system(extract)
-	system(extract)
+	
+#	remove = "sudo rm -rf " + archive
+#	download = "wget -q  "+ url2 + " -O " + archive
+#	extract = "unzip -o -j -n " + archive + " *.jpg -d " + base_path # added *.jpg to get only images, added -j to not make directories
 
-	remove = "sudo rm -rf " + archive
-	download = "wget -q  "+ url2 + " -O " + archive
-	extract = "unzip -o -j -n " + archive + " *.jpg -d " + base_path # added *.jpg to get only images, added -j to not make directories
-
-	system(remove)
-	print("download2")
-	system(download)
-	print("extract2")
-	system(extract)
-	print("download_images is done")
+#	system(remove)
+#	print("download2")
+#	system(download)
+#	print("extract2")
+#	system(extract)
+	print("download_images done")
 
 def resize_images():
 	images = list_images()
@@ -131,7 +132,17 @@ def initialize():
 	current_carrousel_status = carrousel_status
 	carrousel_status = False
 
-	download_images(dropbox_link,dropbox_link2)
+#	download_images(dropbox_link,dropbox_link2)
+
+	download_images(dropbox_link,"*")
+
+        if( len(dropbox_link2) > 4 ):
+                download_images(dropbox_link2,"temp.zip")
+        if( len(dropbox_link3) > 4 ):
+                download_images(dropbox_link3,"temp.zip")
+        if( len(dropbox_link4) > 4 ):
+                download_images(dropbox_link4,"temp.zip")
+
 #	resize_images()
 	image_list = list_images()
 	print (len(image_list))
