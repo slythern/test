@@ -86,7 +86,7 @@ COPY . ./
 # 2017-09-29 PM 1210 moved to application
 #CMD ["cron", "-f"]
 CMD service cron start && tail -f /dev/null
-RUN crontab jobs.txt
+#RUN crontab jobs.txt
 
 
 #RUN sed -i '/session required pam_loginuid.so/c\#session required pam_loginuid.so' /etc/pam.d/cron
