@@ -1,6 +1,0 @@
-# Pacific Standard Time -8
-# Turn off display every evening @ 10PM 
-0 6 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
-
-# Turn on display every morning @ 8AM 
-0 16 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
