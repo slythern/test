@@ -1,6 +1,0 @@
-# Central Daylight Time -5
-# Turn off display every evening 
-0 3 * * * echo 1 > /sys/class/backlight/rpi_backlight/bl_power
-
-# Turn on display every morning 
-0 13 * * * echo 0 > /sys/class/backlight/rpi_backlight/bl_power
