@@ -120,7 +120,7 @@ def update_image(image_path):
 	reload_button.image = img
 	
 def initialize():
-	global image_list, carrousel_status, initial_init, last_command
+	global image_list, carrousel_status, initial_init
 	current_carrousel_status = carrousel_status
 	carrousel_status = False
 	
@@ -166,6 +166,7 @@ def force_reload():
 	root.after(100, initialize)
 	
 def set_backlight():
+	global last_command
 #	print("set_backlight()")
 	
 	local_time=localtime()
