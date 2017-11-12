@@ -182,10 +182,10 @@ def set_backlight():
 #	if time_now < time_on :
 #		command = "echo 1 > /sys/class/backlight/rpi_backlight/bl_power"
 	
-	print(command)
 	if command != last_command :
 		system(command)
 		last_command = command
+		print(command)
 	
 root = Tk()
 root.title('Connected Frame')
