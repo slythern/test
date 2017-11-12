@@ -119,9 +119,10 @@ def update_image(image_path):
 	reload_button.image = img
 	
 def initialize():
-	global image_list, carrousel_status, initial_init
+	global image_list, carrousel_status, initial_init, last_command
 	current_carrousel_status = carrousel_status
 	carrousel_status = False
+	last_command = ""
 	
 	download_images(dropbox_link,"*")
 	if( len(dropbox_link2) > 4 ):
@@ -165,24 +166,25 @@ def force_reload():
 	root.after(100, initialize)
 	
 def set_backlight():
-	print("set_backlight()")
+#	print("set_backlight()")
 	
 	local_time=localtime()
-	d = datetime(local_time.tm_year,local_time.tm_mon,local_time.tm_mday,local_time.tm_hour,local_time.tm_min,local_time.tm_sec)
+	time_now = datetime(local_time.tm_year,local_time.tm_mon,local_time.tm_mday,local_time.tm_hour,local_time.tm_min,local_time.tm_sec)
 	time_on = datetime(local_time.tm_year,local_time.tm_mon,local_time.tm_mday,turn_backlight_on.tm_hour,turn_backlight_on.tm_min,local_time.tm_sec)
 	time_off = datetime(local_time.tm_year,local_time.tm_mon,local_time.tm_mday,turn_backlight_off.tm_hour,turn_backlight_off.tm_min,local_time.tm_sec)
-	
-	command = "echo 0 > /sys/class/backlight/rpi_backlight/bl_power"
-	
-	if d > time_off :
+		
+	if time_on < time_now > time_off :
 		command = "echo 1 > /sys/class/backlight/rpi_backlight/bl_power"
+	else:
+		command = "echo 0 > /sys/class/backlight/rpi_backlight/bl_power"
 	
-	if d < time_on :
-		command = "echo 1 > /sys/class/backlight/rpi_backlight/bl_power"
+#	if time_now < time_on :
+#		command = "echo 1 > /sys/class/backlight/rpi_backlight/bl_power"
 	
 	print(command)
-	system(command)
-	
+	if last_command != command :
+		system(command)
+	last_command = command
 	
 root = Tk()
 root.title('Connected Frame')
