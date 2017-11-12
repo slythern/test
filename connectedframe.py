@@ -26,6 +26,7 @@ carrousel_status = True
 image_index = 0
 image_list = []
 initial_init = True
+last_command = "none"
 
 def download_images(url,scope):
 	archive = base_path + "temp.zip"
@@ -122,7 +123,6 @@ def initialize():
 	global image_list, carrousel_status, initial_init, last_command
 	current_carrousel_status = carrousel_status
 	carrousel_status = False
-	last_command = ""
 	
 	download_images(dropbox_link,"*")
 	if( len(dropbox_link2) > 4 ):
@@ -182,9 +182,9 @@ def set_backlight():
 #		command = "echo 1 > /sys/class/backlight/rpi_backlight/bl_power"
 	
 	print(command)
-	if last_command != command :
+	if command != last_command :
 		system(command)
-	last_command = command
+		last_command = command
 	
 root = Tk()
 root.title('Connected Frame')
