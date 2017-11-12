@@ -75,8 +75,8 @@ def previous_image():
 def next_image():
 	global image_index
 	
-	if image_index < 1:
-		set_backlight()
+#	if image_index < 1:
+	set_backlight()
 	
 	image_index = image_index + 1
 	
