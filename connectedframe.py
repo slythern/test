@@ -36,11 +36,11 @@ def download_images(url,scope):
 	extract = "unzip -j -n " + archive + " *.jpg -d " + base_path # added *.jpg to get only images, added -j to not make directories -n to skip existing files
 	
 	system(remove)
-	print("download")
+	print("download",scope)
 	system(download)
 	print("extract")
 	system(extract)
-	print("download_images is done")
+	print("download_images done")
 	
 	
 def resize_images():
@@ -166,7 +166,7 @@ def force_reload():
 	root.after(100, initialize)
 	
 def set_backlight():
-	global last_command
+	global last_command, turn_backlight_on, turn_backlight_off
 #	print("set_backlight()")
 	
 	local_time=localtime()
@@ -185,10 +185,10 @@ def set_backlight():
 	if command != last_command :
 		system(command)
 		last_command = command
-		print(command)
 		print(time_on)
 		print(time_now)
 		print(time_off)
+		print(command)
 	
 root = Tk()
 root.title('Connected Frame')
