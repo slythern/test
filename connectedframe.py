@@ -14,6 +14,7 @@ carousel_interval = int(getenv("CAROUSEL_INTERVAL_SECONDS")) * 1000
 frame_owner = getenv("FRAME_OWNER")
 ifttt_key = getenv("IFTTT_KEY")
 
+dropbox_link1 = getenv("DROPBOX_LINK1")
 dropbox_link2 = getenv("DROPBOX_LINK2")
 dropbox_link3 = getenv("DROPBOX_LINK3")
 dropbox_link4 = getenv("DROPBOX_LINK4")
@@ -125,6 +126,8 @@ def initialize():
 	carrousel_status = False
 	
 	download_images(dropbox_link,"*")
+	if( len(dropbox_link1) > 4 ):
+		download_images(dropbox_link1,"temp.zip")
 	if( len(dropbox_link2) > 4 ):
 		download_images(dropbox_link2,"temp.zip")
 	if( len(dropbox_link3) > 4 ):
