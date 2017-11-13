@@ -174,10 +174,10 @@ def set_backlight():
 	time_on = datetime(local_time.tm_year,local_time.tm_mon,local_time.tm_mday,turn_backlight_on.tm_hour,turn_backlight_on.tm_min,local_time.tm_sec)
 	time_off = datetime(local_time.tm_year,local_time.tm_mon,local_time.tm_mday,turn_backlight_off.tm_hour,turn_backlight_off.tm_min,local_time.tm_sec)
 		
-	if time_on < time_now > time_off :
-		command = "echo 1 > /sys/class/backlight/rpi_backlight/bl_power"
-	else:
+	if time_on > time_now < time_off :
 		command = "echo 0 > /sys/class/backlight/rpi_backlight/bl_power"
+	else:
+		command = "echo 1 > /sys/class/backlight/rpi_backlight/bl_power"
 	
 #	if time_now < time_on :
 #		command = "echo 1 > /sys/class/backlight/rpi_backlight/bl_power"
