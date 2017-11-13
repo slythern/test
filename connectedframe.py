@@ -186,6 +186,9 @@ def set_backlight():
 		system(command)
 		last_command = command
 		print(command)
+		print(time_on)
+		print(time_now)
+		print(time_off)
 	
 root = Tk()
 root.title('Connected Frame')
