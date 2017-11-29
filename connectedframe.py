@@ -19,6 +19,12 @@ dropbox_link2 = getenv("DROPBOX_LINK2")
 dropbox_link3 = getenv("DROPBOX_LINK3")
 dropbox_link4 = getenv("DROPBOX_LINK4")
 
+dropbox_link5 = getenv("DROPBOX_LINK5")
+dropbox_link6 = getenv("DROPBOX_LINK6")
+dropbox_link7 = getenv("DROPBOX_LINK7")
+dropbox_link8 = getenv("DROPBOX_LINK8")
+dropbox_link9 = getenv("DROPBOX_LINK9")
+
 turn_backlight_on = strptime(getenv("turn_backlight_on"), "%H:%M")
 turn_backlight_off = strptime(getenv("turn_backlight_off"), "%H:%M")
 
@@ -41,7 +47,6 @@ def download_images(url,scope):
 	system(download)
 	print("extract")
 	system(extract)
-	print("download_images done")
 	
 	
 def resize_images():
@@ -134,6 +139,18 @@ def initialize():
 		download_images(dropbox_link3,"temp.zip")
 	if( len(dropbox_link4) > 4 ):
 		download_images(dropbox_link4,"temp.zip")
+	if( len(dropbox_link5) > 4 ):
+		download_images(dropbox_link5,"temp.zip")
+	if( len(dropbox_link6) > 4 ):
+		download_images(dropbox_link6,"temp.zip")
+	if( len(dropbox_link7) > 4 ):
+		download_images(dropbox_link7,"temp.zip")
+	if( len(dropbox_link8) > 4 ):
+		download_images(dropbox_link8,"temp.zip")
+	if( len(dropbox_link9) > 4 ):
+		download_images(dropbox_link9,"temp.zip")
+	
+	print("download_images done")
 	
 	resize_images()
 	image_list = list_images()
@@ -181,9 +198,6 @@ def set_backlight():
 		command = "echo 0 > /sys/class/backlight/rpi_backlight/bl_power"
 	else:
 		command = "echo 1 > /sys/class/backlight/rpi_backlight/bl_power"
-	
-#	if time_now < time_on :
-#		command = "echo 1 > /sys/class/backlight/rpi_backlight/bl_power"
 	
 	if command != last_command :
 		system(command)
