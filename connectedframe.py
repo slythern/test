@@ -200,7 +200,8 @@ def set_backlight():
 		command = "echo 1 > /sys/class/backlight/rpi_backlight/bl_power"
 	
 	if command != last_command :
-		initialize()	 # 2017-12-05 AM 10:08
+		if command = "echo 0 > /sys/class/backlight/rpi_backlight/bl_power":	# 2017-12-07 AM 11:35
+			initialize()	 # 2017-12-05 AM 10:08
 		system(command)
 		last_command = command
 		print(time_on)
